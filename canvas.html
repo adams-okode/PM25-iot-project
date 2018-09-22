@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Draw a line</title>
+</head>
+
+<body>
+    <canvas id="DemoCanvas" width="800" height="400">
+
+    </canvas>
+    <script>
+        var canvas = document.getElementById('DemoCanvas');
+
+        function initilialize(canvas) {
+
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+
+                //horizontal line
+                ctx.lineWidth = 1;
+                ctx.moveTo(0, 380);
+                ctx.lineTo(canvas.width, 380);
+                ctx.stroke();
+
+                //vertical line
+                ctx.lineWidth = 1;
+                ctx.moveTo(40, 0);
+                ctx.lineTo(40, canvas.width);
+                ctx.stroke();
+
+                /***
+                for (i = 0; i < 400; i += 40) {
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(canvas.width, i);
+                    ctx.stroke();
+                }
+                for (i = 0; i < 800; i += 40) {
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.width / 2);
+                    ctx.stroke();
+                }**/
+
+            }
+            generate_labelling(canvas);
+        }
+
+
+
+        function draw_line(x1, y1, x2, y2) {
+            //horizontal line
+            var ctx = canvas.getContext("2d");
+            ctx.lineWidth = 1;
+            ctx.moveTo(x1 + 20, 380 - y1);
+            ctx.lineTo(x2 + 20, 380 - y2);
+            ctx.stroke();
+
+        }
+
+
+        function generate_labelling(canvas) {
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+
+
+                /***
+                 *vertical scales
+                 */
+                for (i = 0; i < 400; i += 40) {
+                    if (i == 0) {
+                        ctx.fill();
+                        ctx.fillText("", i, 400);
+                        continue;
+                    }
+                    z = 400 - (i + 0);
+                    ctx.fill();
+                    ctx.fillText("" + i + "", 20, z);
+                    console.log(i);
+                }
+
+                /***
+                 * horizontal scale
+                 * */
+                for (i = 0; i < 800; i += 40) {
+                    if (i == 0) {
+                        ctx.fill();
+                        ctx.fillText("", i, 400);
+                        continue;
+                    }
+                    ctx.fill();
+                    ctx.fillText("" + i + "", i + 20, 400);
+                }
+            }
+        }
+
+
+        function plot_points(x, y) {
+            var context = canvas.getContext("2d");
+            context.beginPath();
+
+            if (y <= 20) {
+                y += 20;
+            }
+
+            //(x,y)
+            context.arc((x + 40), (360 - y) + 40, 5, 0, Math.PI * 2);
+            context.closePath();
+            context.fill();
+            context.fillText("(" + x + "," + y + ")", (x + 40) + 2, (360 - y) + 40 + 2);
+        }
+        
+        draw_line(150, 50, 150, 50);
+        draw_line(150, 150, 150, 50);
+      
+        plot_points(0, 10);
+        initilialize(canvas);
+    </script>
+</body>
+
+</html>
