@@ -61,9 +61,9 @@
                 <div class="card" style="width:auto;">
 
                     <div class="card-body">
-                        <canvas id="DemoCanvas" width="1000" height="600">
+                        <div id="DemoCanvas" width="1000" height="600">
 
-                        </canvas>
+                        </div>
 
                     </div>
                 </div>
@@ -79,105 +79,6 @@
     <script>
         var canvas = document.getElementById('DemoCanvas');
 
-        function initilialize(canvas) {
-
-            if (canvas.getContext) {
-                var ctx = canvas.getContext("2d");
-
-                //horizontal line
-                ctx.lineWidth = 1;
-                ctx.moveTo(0, 575);
-                ctx.lineTo(canvas.width, 575);
-                ctx.stroke();
-
-                //vertical line
-                ctx.lineWidth = 1;
-                ctx.moveTo(50, 0);
-                ctx.lineTo(50, canvas.width);
-                ctx.stroke();
-
-
-                /**for (i = 0; i < 600; i += 50) {
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(0, i);
-                    ctx.lineTo(canvas.width, i);
-                    ctx.strokeStyle = "#F1F1F1";
-                    ctx.stroke();
-                }
-                for (i = 0; i < 1000; i += 50) {
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(i, 0);
-                    ctx.lineTo(i, canvas.width / 2);
-                    ctx.strokeStyle = "#F1F1F1";
-                    ctx.stroke();
-                }**/
-
-            }
-            generate_labelling(canvas);
-        }
-
-
-
-        function draw_line(x1, y1, x2, y2) {
-            //horizontal line
-            var ctx = canvas.getContext("2d");
-            ctx.lineWidth = 2;
-            ctx.moveTo(x1 + 25, 570 - y1);
-            ctx.lineTo(x2 + 25, 570 - y2);
-            ctx.stroke();
-
-        }
-
-
-        function generate_labelling(canvas) {
-            if (canvas.getContext) {
-                var ctx = canvas.getContext("2d");
-
-                /***
-                 *vertical scales
-                 */
-                for (i = 0; i < 600; i += 50) {
-                    if (i == 0) {
-                        ctx.fill();
-                        ctx.fillText("", i, 600);
-                        continue;
-                    }
-                    z = 600 - (i + 0);
-                    ctx.fill();
-                    ctx.fillText("" + i + "", 50, z);
-                }
-
-                /***
-                 * horizontal scale
-                 * */
-                for (i = 0; i < 1000; i += 50) {
-                    if (i == 0) {
-                        ctx.fill();
-                        ctx.fillText("", i, 1000);
-                        continue;
-                    }
-                    ctx.fill();
-                    ctx.fillText("" + i + "", i + 25, 600);
-                }
-            }
-        }
-
-
-        function plot_points(x, y) {
-            var context = canvas.getContext("2d");
-            context.beginPath();
-
-            if (y <= 25) {
-                y += 25;
-            }
-
-            //(x,y)
-            context.arc((x + 50), (550 - y) + 50, 10, 0, Math.PI * 2);
-            context.closePath();
-            context.fill();
-            context.fillText("(" + x + "," + y + ")", (x + 50) + 0, (550 - y) + 50 + 0);
-        }
-
 
         var heatmap = h337.create({
             container: canvas
@@ -188,15 +89,7 @@
             data: [{ x: 10, y: 15, value: 5},]
         });
 
-        draw_line(100, 250, 300, 250);
-        draw_line(100, 50, 300, 50);
-
-        draw_line(100, 250, 100, 50);
-        draw_line(300, 250, 300, 50);
-        
-
-        plot_points(200, 170);
-        initilialize(canvas);
+      
 
     </script>
 </body>
