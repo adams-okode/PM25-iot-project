@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/heat/map', function () {
+    return view('heat-map');
+});
+

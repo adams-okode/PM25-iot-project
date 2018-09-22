@@ -75,6 +75,7 @@
 
 
     <script src="{{asset('css/bootstrap-4.0.0/bootstrap-4.0.0/dist/css/bootstrap.min.css')}}"></script>
+    @include('scripts')
     <script>
         var canvas = document.getElementById('DemoCanvas');
 
@@ -177,6 +178,16 @@
             context.fillText("(" + x + "," + y + ")", (x + 50) + 0, (550 - y) + 50 + 0);
         }
 
+
+        var heatmap = h337.create({
+            container: canvas
+        });
+
+        heatmap.setData({
+            max: 5,
+            data: [{ x: 10, y: 15, value: 5},]
+        });
+
         draw_line(100, 250, 300, 250);
         draw_line(100, 50, 300, 50);
 
@@ -191,3 +202,9 @@
 </body>
 
 </html>
+
+
+
+
+
+
