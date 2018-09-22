@@ -11,20 +11,6 @@ public class WallRequest {
     private Integer x2;
     private Integer y2;
 
-    public WallRequest() {
-
-    }
-
-    public WallRequest(Long room_id, Integer x1, Integer y1, Integer x2, Integer y2) {
-        super();
-        this.room_id = room_id;
-        this.x1 = x1;
-        this.x2 = x2;
-        this.y1 = y1;
-        this.y2 = y2;
-
-    }
-
     /**
      * @return Long return the room_id
      */

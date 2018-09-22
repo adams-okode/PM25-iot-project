@@ -1,11 +1,13 @@
 package com.iot.app.iotapp.DataLayer;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +19,10 @@ public class Reading {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long sensor_id;
+
+    @ManyToOne
+    private PM25 sensor;
+    
     private Float value;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
@@ -26,9 +31,9 @@ public class Reading {
 
     }
 
-    public Reading(Long sensor_id, Float value) {
+    public Reading(PM25 sensor, Float value) {
         super();
-        this.sensor_id = sensor_id;
+        this.sensor = sensor;
         this.value = value;
 
     }
@@ -47,19 +52,7 @@ public class Reading {
         this.id = id;
     }
 
-    /**
-     * @return Long return the sensor_id
-     */
-    public Long getSensor_id() {
-        return sensor_id;
-    }
-
-    /**
-     * @param sensor_id the sensor_id to set
-     */
-    public void setSensor_id(Long sensor_id) {
-        this.sensor_id = sensor_id;
-    }
+    
 
     /**
      * @return Float return the value
@@ -101,6 +94,21 @@ public class Reading {
      */
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+
+    /**
+     * @return PM25 return the sensor
+     */
+    public PM25 getSensor() {
+        return sensor;
+    }
+
+    /**
+     * @param sensor the sensor to set
+     */
+    public void setSensor(PM25 sensor) {
+        this.sensor = sensor;
     }
 
 }

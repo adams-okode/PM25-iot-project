@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,7 +16,10 @@ public class Wall {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long room_id;
+
+    @ManyToOne
+    private Room room;
+
     private Integer x1;
     private Integer y1;
     private Integer x2;
@@ -26,9 +30,9 @@ public class Wall {
 
     }
 
-    public Wall(Long room_id, Integer x1, Integer y1, Integer x2, Integer y2) {
+    public Wall(Room room, Integer x1, Integer y1, Integer x2, Integer y2) {
         super();
-        this.room_id = room_id;
+        this.room = room;
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -51,17 +55,17 @@ public class Wall {
     }
 
     /**
-     * @return Long return the room_id
+     * @return Long return the room
      */
-    public Long getRoom_id() {
-        return room_id;
+    public Room getroom() {
+        return room;
     }
 
     /**
-     * @param room_id the room_id to set
+     * @param room the room to set
      */
-    public void setRoom_id(Long room_id) {
-        this.room_id = room_id;
+    public void setroom(Room room) {
+        this.room = room;
     }
 
     /**

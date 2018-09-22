@@ -1,96 +1,190 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
 
-        <title>Laravel</title>
+<head>
+    <meta charset=utf-8 />
+    <title>Draw a line</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-4.0.0/bootstrap-4.0.0/dist/css/bootstrap.min.css')}}">
+    <style>
+        .navbar{
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        .card{
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+    </style>
+</head>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info text-light">
+        <a class="navbar-brand text-light" href="#">AirQ analyzer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            .full-height {
-                height: 100vh;
-            }
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-light" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
 
-            .position-ref {
-                position: relative;
-            }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+            </ul>
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                                role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                                role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+                                role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-9">
+                <div class="card" style="width:auto;">
+
+                    <div class="card-body">
+                        <canvas id="DemoCanvas" width="800" height="400">
+
+                        </canvas>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </body>
+    </div>
+
+
+    <script src="{{asset('css/bootstrap-4.0.0/bootstrap-4.0.0/dist/css/bootstrap.min.css')}}"></script>
+    <script>
+        var canvas = document.getElementById('DemoCanvas');
+
+        function initilialize(canvas) {
+
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+
+                //horizontal line
+                ctx.lineWidth = 1;
+                ctx.moveTo(0, 380);
+                ctx.lineTo(canvas.width, 380);
+                ctx.stroke();
+
+                //vertical line
+                ctx.lineWidth = 1;
+                ctx.moveTo(40, 0);
+                ctx.lineTo(40, canvas.width);
+                ctx.stroke();
+
+
+                for (i = 0; i < 400; i += 40) {
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(canvas.width, i);
+                    ctx.strokeStyle = "#F1F1F1";
+                    ctx.stroke();
+                }
+                for (i = 0; i < 800; i += 40) {
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.width / 2);
+                    ctx.strokeStyle = "#F1F1F1";
+                    ctx.stroke();
+                }
+
+            }
+            generate_labelling(canvas);
+        }
+
+
+
+        function draw_line(x1, y1, x2, y2) {
+            //horizontal line
+            var ctx = canvas.getContext("2d");
+            ctx.lineWidth = 2;
+            ctx.moveTo(x1 + 20, 380 - y1);
+            ctx.lineTo(x2 + 20, 380 - y2);
+            ctx.stroke();
+
+        }
+
+
+        function generate_labelling(canvas) {
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+
+                /***
+                 *vertical scales
+                 */
+                for (i = 0; i < 400; i += 40) {
+                    if (i == 0) {
+                        ctx.fill();
+                        ctx.fillText("", i, 400);
+                        continue;
+                    }
+                    z = 400 - (i + 0);
+                    ctx.fill();
+                    ctx.fillText("" + i + "", 20, z);
+                    console.log(i);
+                }
+
+                /***
+                 * horizontal scale
+                 * */
+                for (i = 0; i < 800; i += 40) {
+                    if (i == 0) {
+                        ctx.fill();
+                        ctx.fillText("", i, 400);
+                        continue;
+                    }
+                    ctx.fill();
+                    ctx.fillText("" + i + "", i + 20, 400);
+                }
+            }
+        }
+
+
+        function plot_points(x, y) {
+            var context = canvas.getContext("2d");
+            context.beginPath();
+
+            if (y <= 20) {
+                y += 20;
+            }
+
+            //(x,y)
+            context.arc((x + 40), (360 - y) + 40, 5, 0, Math.PI * 2);
+            context.closePath();
+            context.fill();
+            context.fillText("(" + x + "," + y + ")", (x + 40) + 2, (360 - y) + 40 + 2);
+        }
+
+        draw_line(150, 150, 150, 50);
+        draw_line(150, 150, 150, 50);
+
+        plot_points(0, 10);
+        initilialize(canvas);
+
+    </script>
+</body>
+
 </html>

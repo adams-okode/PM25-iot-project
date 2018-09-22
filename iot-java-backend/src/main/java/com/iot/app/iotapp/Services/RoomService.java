@@ -1,5 +1,6 @@
 package com.iot.app.iotapp.Services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,13 +28,18 @@ public class RoomService {
 		return Rooms;
 	}
 
-	public Optional<Room> getRoom(Long id) {
-		return roomRepository.findById(id);
+	public Room getRoom(Long id) {
+		return roomRepository.findById(id).orElse(new Room());
     }
     
-	public void addRoom(Room Room) {
-		
-		roomRepository.save(Room);
+	public void addRoom(RoomRequest roomRequest) {
+		Room room=new Room();
+		room.setCreated_at(LocalDateTime.now());
+		room.setUpdated_at(LocalDateTime.now());
+		room.setName(roomRequest.getName());
+		room.setStatus(roomRequest.getStatus());
+		room.setWalls(4);
+		roomRepository.save(room);
 	}
 
 	public void updateRoom(Room Room, Long id) {
@@ -45,9 +51,4 @@ public class RoomService {
 	}
 
 
-	public void createRoomWall(Long id, Wall wall){
-		Optional<Room> room = roomRepository.findById(id);
-
-
-	}
 }

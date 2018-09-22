@@ -33,14 +33,13 @@ public class RoomController {
         return response;
     }
 
-
     /**
      * 
      * @param room
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public GeneralResponse createRoom(@RequestBody Room room){
+    public GeneralResponse createRoom(@RequestBody RoomRequest room) {
         roomService.addRoom(room);
         GeneralResponse response = new GeneralResponse<>();
         response.setMessage("success");
@@ -49,7 +48,6 @@ public class RoomController {
 
     }
 
-
     /**
      * 
      * @param room
@@ -57,7 +55,7 @@ public class RoomController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public GeneralResponse updateRoom(@RequestBody Room room, @PathVariable Long id){
+    public GeneralResponse updateRoom(@RequestBody Room room, @PathVariable Long id) {
         roomService.updateRoom(room, id);
         GeneralResponse response = new GeneralResponse<>();
         response.setMessage("success");
@@ -72,7 +70,7 @@ public class RoomController {
      * @return
      */
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public GeneralResponse updateRoom(@RequestParam Long id){
+    public GeneralResponse updateRoom(@RequestParam Long id) {
         roomService.deleteRoom(id);
         GeneralResponse response = new GeneralResponse<>();
         response.setMessage("success");
@@ -80,6 +78,5 @@ public class RoomController {
         return response;
 
     }
-
 
 }

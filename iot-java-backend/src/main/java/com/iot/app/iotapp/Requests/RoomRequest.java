@@ -9,16 +9,6 @@ public class RoomRequest {
     private Integer walls;
     private String status;
 
-    public RoomRequest() {
-
-    }
-
-    public RoomRequest(String name, Integer walls, String status) {
-        super();
-        this.name = name;
-        this.status = status;
-        this.walls = walls;
-    }
 
     /**
      * @return String return the name

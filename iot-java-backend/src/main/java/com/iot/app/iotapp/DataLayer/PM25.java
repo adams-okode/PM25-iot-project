@@ -1,11 +1,14 @@
 package com.iot.app.iotapp.DataLayer;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,19 +18,23 @@ public class PM25 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long room_id;
+
+    @ManyToOne
+    private Room room;
+
     private String tag;
     private Integer x2;
     private Integer y2;
+
     @OneToMany
     private List<Reading> reading;
     public PM25() {
 
     }
 
-    public PM25(Long room_id, String tag, Integer x2, Integer y2) {
+    public PM25(Room room, String tag, Integer x2, Integer y2) {
         super();
-        this.room_id = room_id;
+        this.room = room;
         this.tag = tag;
         this.x2 = x2;
         this.y2 = y2;
@@ -48,19 +55,7 @@ public class PM25 {
         this.id = id;
     }
 
-    /**
-     * @return Long return the room_id
-     */
-    public Long getRoom_id() {
-        return room_id;
-    }
-
-    /**
-     * @param room_id the room_id to set
-     */
-    public void setRoom_id(Long room_id) {
-        this.room_id = room_id;
-    }
+    
 
     /**
      * @return String return the tag
@@ -117,6 +112,21 @@ public class PM25 {
      */
     public void setReading_id(List<Reading> reading) {
         this.reading = reading;
+    }
+
+
+    /**
+     * @return Room return the room
+     */
+    public Room getRoom() {
+        return room;
+    }
+
+    /**
+     * @param room the room to set
+     */
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
 }

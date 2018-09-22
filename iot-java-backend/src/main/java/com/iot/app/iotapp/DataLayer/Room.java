@@ -20,11 +20,12 @@ public class Room {
     private String name;
     private Integer walls;
     private String status;
+
     @OneToMany
     private List<PM25> sensor;
 
     @OneToMany
-    private List<Wall> wall;
+    private List<Wall> actual_wall;
 
     private LocalDateTime created_at;
    
@@ -129,19 +130,5 @@ public class Room {
         this.updated_at = updated_at;
     }
 
-
-    /**
-     * @return List<PM25> return the sensor
-     */
-    public List<PM25> getSensor() {
-        return sensor;
-    }
-
-    /**
-     * @param sensor the sensor to set
-     */
-    public void setSensor(List<PM25> sensor) {
-        this.sensor = sensor;
-    }
 
 }
