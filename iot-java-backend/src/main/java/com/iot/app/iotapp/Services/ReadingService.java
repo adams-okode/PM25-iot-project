@@ -54,5 +54,9 @@ public class ReadingService {
     
     public List<Reading> getAllSensorReadings(Long id){
         return readingRepository.findBySensorId(id);
-    }
+	}
+	
+	public void deleteAllReadings(){
+		readingRepository.deleteAll();
+	}
 }

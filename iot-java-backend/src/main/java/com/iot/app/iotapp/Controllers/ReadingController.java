@@ -35,13 +35,22 @@ public class ReadingController {
      * @return
      */
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public GeneralResponse createRoom(@RequestBody ReadingRequest reading) {
+    public GeneralResponse createReading(@RequestBody ReadingRequest reading) {
         readingService.addReading(reading);
         GeneralResponse response = new GeneralResponse<>();
         response.setMessage("success");
         response.setStatus_code(200);
         return response;
 
+    }
+
+    @RequestMapping( value= "/deleteAll", method = RequestMethod.DELETE)
+    public GeneralResponse deleteAllReadings(){
+        readingService.deleteAllReadings();
+        GeneralResponse response = new GeneralResponse<>();
+        response.setMessage("success");
+        response.setStatus_code(200);
+        return response;
     }
     
 }
