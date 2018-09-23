@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "sensors")
 public class PM25 {
@@ -27,6 +29,7 @@ public class PM25 {
     private Integer y2;
 
     @OneToMany
+    @JsonManagedReference
     private List<Reading> reading;
     public PM25() {
 

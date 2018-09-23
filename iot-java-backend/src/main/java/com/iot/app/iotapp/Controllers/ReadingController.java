@@ -4,6 +4,10 @@ import com.iot.app.iotapp.Requests.ReadingRequest;
 import com.iot.app.iotapp.Responses.GeneralResponse;
 import com.iot.app.iotapp.Services.ReadingService;
 
+import java.util.List;
+
+import com.iot.app.iotapp.DataLayer.Reading;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +25,9 @@ public class ReadingController {
     ReadingService readingService;
 
     @RequestMapping(value = "/sortBySensor", method = RequestMethod.GET)
-    public GeneralResponse getAllReadingsBySensor(@RequestParam Long sensor_id){
-        readingService.getAllSensorReadings(sensor_id);
-        GeneralResponse response = new GeneralResponse<>();
-        response.setMessage("success");
-        response.setStatus_code(200);
-        return response;
+    public List<Reading> getAllReadingsBySensor(@RequestParam Long sensor_id){
+        List<Reading> readings =  readingService.getAllSensorReadings(sensor_id);
+        return readings;
     }
 
      /**

@@ -3,10 +3,8 @@ package com.iot.app.iotapp.Services;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.iot.app.iotapp.DataLayer.Room;
-import com.iot.app.iotapp.DataLayer.Wall;
 import com.iot.app.iotapp.Repositories.RoomRepository;
 import com.iot.app.iotapp.Requests.RoomRequest;
 

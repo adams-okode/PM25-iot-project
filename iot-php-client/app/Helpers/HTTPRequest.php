@@ -34,14 +34,14 @@ class HTTPRequest
 
         if ($err) {
 
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => [],
                 'message' => $err,
             ]));
 
         } else {
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => $response,
                 'message' => '',
@@ -77,14 +77,14 @@ class HTTPRequest
 
         if ($err) {
 
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => [],
                 'message' => $err,
             ]));
 
         } else {
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => $response,
                 'message' => '',
@@ -119,14 +119,14 @@ class HTTPRequest
 
         if ($err) {
 
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => [],
                 'message' => $err,
             ]));
 
         } else {
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => $response,
                 'message' => '',
@@ -161,20 +161,27 @@ class HTTPRequest
 
         if ($err) {
 
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => [],
                 'message' => $err,
             ]));
 
         } else {
-            return json_decode(json_decode([
+            return json_decode(json_encode([
                 'status_code' => 200,
                 'data' => $response,
                 'message' => '',
             ]));
         }
 
+    }
+
+
+    public static function JsonResponse($data){
+
+        return json_encode($data);
+        
     }
 
 }

@@ -40,7 +40,7 @@ public class WallService {
         wall.setX1(wallRequest.getX1());
         wall.setX2(wallRequest.getX2());
         wall.setY1(wallRequest.getY1());
-        wall.setY1(wallRequest.getY2());
+        wall.setY2(wallRequest.getY2());
         wallRepository.save(wall);
     }
 

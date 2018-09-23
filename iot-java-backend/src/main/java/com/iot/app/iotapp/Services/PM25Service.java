@@ -2,15 +2,14 @@ package com.iot.app.iotapp.Services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.iot.app.iotapp.DataLayer.PM25;
 import com.iot.app.iotapp.DataLayer.Room;
 import com.iot.app.iotapp.Repositories.PM25Repository;
 import com.iot.app.iotapp.Requests.PM25Request;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * PM25Service

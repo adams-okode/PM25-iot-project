@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Reading
  */
@@ -21,6 +23,7 @@ public class Reading {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     private PM25 sensor;
     
     private Float value;
