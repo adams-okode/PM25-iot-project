@@ -12,7 +12,7 @@
 <br>
 <div class="row" id="display-rooms">
         
-
+        
 </div>
 @stop
 
