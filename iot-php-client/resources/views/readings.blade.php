@@ -115,8 +115,8 @@
 
         console.log(d)
         h.setData({
-            min: 1,
-            max: 1000000,
+            min: 5,
+            max: 10000,
             data: d
         });
 
