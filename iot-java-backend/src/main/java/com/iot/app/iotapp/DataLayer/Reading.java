@@ -25,6 +25,10 @@ public class Reading {
     @ManyToOne
     @JsonBackReference
     private PM25 sensor;
+
+    private Integer x;
+    private Integer y;
+
     
     private Float value;
     private LocalDateTime created_at;
@@ -34,10 +38,12 @@ public class Reading {
 
     }
 
-    public Reading(PM25 sensor, Float value) {
+    public Reading(PM25 sensor, Float value, Integer x, Integer y) {
         super();
         this.sensor = sensor;
         this.value = value;
+        this.x = x;
+        this.y = y;
 
     }
 
@@ -112,6 +118,35 @@ public class Reading {
      */
     public void setSensor(PM25 sensor) {
         this.sensor = sensor;
+    }
+
+
+    /**
+     * @return Integer return the x
+     */
+    public Integer getX() {
+        return x;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    /**
+     * @return Integer return the y
+     */
+    public Integer getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(Integer y) {
+        this.y = y;
     }
 
 }

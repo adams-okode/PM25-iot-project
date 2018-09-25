@@ -19,6 +19,7 @@ class SensorController extends Controller
             "room_id"=> $request->id,
             "x2"=> $request->x1,
             "y2"=> $request->y1,
+            "tag"=> $request->tag,
         ];
 
         $response = \App\Helpers\HTTPRequest::post($url, $data);

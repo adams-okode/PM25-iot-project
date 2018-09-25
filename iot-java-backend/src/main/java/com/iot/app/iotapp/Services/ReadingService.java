@@ -37,7 +37,9 @@ public class ReadingService {
 	public void addReading(ReadingRequest readingRequest) {
         Reading reading=new Reading();
         PM25 sensor = pm25Service.getPM25(readingRequest.getSensor_id());
-        reading.setSensor(sensor);
+		reading.setSensor(sensor);
+		reading.setX(readingRequest.getX());
+		reading.setY(readingRequest.getY());
 		reading.setCreated_at(LocalDateTime.now());
 		reading.setUpdated_at(LocalDateTime.now());
 		reading.setValue(readingRequest.getValue());

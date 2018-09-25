@@ -62,6 +62,7 @@
     @include('layout.main-modals')
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('css/bootstrap-4.0.0/bootstrap-4.0.0/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/heatmap.js') }}"></script>
 
     @yield('scripts')
 </body>

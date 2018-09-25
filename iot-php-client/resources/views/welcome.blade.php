@@ -175,11 +175,13 @@
     function create_anchor() {
         var x1 = document.getElementById('anchor-x1').value;
         var y1 = document.getElementById('anchor-y1').value;
+        var tag = document.getElementById('anchor-tag').value;
 
         //draw_line(100, 50, 300, 50);
         $.post("{{ url('/sensor/createSensor') }}", {
             x1: x1,
             y1: y1,
+            tag:tag,
             id: "{{ @$id }}"
         }, function (data, status) {
             console.log(data);
@@ -204,7 +206,8 @@
 
             for (var index = 0; index < serialized.length; index++) {
                 var element = serialized[index];
-                draw_line(parseInt(element['x1']), parseInt(element['y1']), parseInt(element['x2']), parseInt(element['y2']));
+                draw_line(parseInt(element['x1']), parseInt(element['y1']), parseInt(element['x2']), parseInt(
+                    element['y2']));
 
             }
         });
@@ -263,14 +266,16 @@
 
         container.innerHTML = active;
 
-        setInterval(function(container){
+        setInterval(function (container) {
             container.innerHTML = '';
-        },5000)
+        }, 5000)
 
     }
 
+    
+
     getWalls();
-    getSensors()
+    getSensors();
     initilialize(canvas);
     //getRooms();
 

@@ -36,10 +36,10 @@ public class PM25Service {
 	public void addPM25(PM25Request pM25Request) {
         PM25 PM25 = new PM25();
         Room room = roomService.getRoom(pM25Request.getRoom_id());
+        
         PM25.setRoom(room);
-       
         PM25.setX2(pM25Request.getX2());
-       
+        PM25.setTag(pM25Request.getTag());
         PM25.setY2(pM25Request.getY2());
 		PM25Repository.save(PM25);
 	}
