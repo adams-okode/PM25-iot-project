@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.iot.app.iotapp.DataLayer.PM25;
 import com.iot.app.iotapp.DataLayer.Reading;
+import com.iot.app.iotapp.Helpers.NextSequenceHelper;
 import com.iot.app.iotapp.Repositories.ReadingRepository;
 import com.iot.app.iotapp.Requests.ReadingRequest;
 
@@ -22,7 +23,10 @@ public class ReadingService {
     ReadingRepository readingRepository;
 
     @Autowired
-    PM25Service pm25Service;
+	PM25Service pm25Service;
+	
+	@Autowired
+	NextSequenceHelper nextSequenceHelper;
     
     public List<Reading> getAllReadings() {
 		List<Reading> readings = new ArrayList<>();
@@ -38,6 +42,7 @@ public class ReadingService {
         Reading reading=new Reading();
         PM25 sensor = pm25Service.getPM25(readingRequest.getSensor_id());
 		reading.setSensor(sensor);
+		reading.setId(nextSequenceHelper.getNextSequence("readings"));
 		reading.setX(readingRequest.getX());
 		reading.setY(readingRequest.getY());
 		reading.setCreated_at(LocalDateTime.now());

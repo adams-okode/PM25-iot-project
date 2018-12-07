@@ -3,32 +3,29 @@ package com.iot.app.iotapp.DataLayer;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "rooms")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "rooms")
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Integer walls;
     private String status;
 
-    @OneToMany
+    @DBRef
     private List<PM25> sensor;
 
-    @OneToMany
+    @DBRef
     private List<Wall> actual_wall;
 
     private LocalDateTime created_at;
-   
+
     private LocalDateTime updated_at;
 
     public Room() {
@@ -42,7 +39,6 @@ public class Room {
         this.walls = walls;
     }
 
-  
     /**
      * @return Long return the id
      */
@@ -85,8 +81,6 @@ public class Room {
         this.status = status;
     }
 
-  
-
     /**
      * @return Integer return the walls
      */
@@ -100,7 +94,6 @@ public class Room {
     public void setWalls(Integer walls) {
         this.walls = walls;
     }
-
 
     /**
      * @return LocalDateTime return the created_at
@@ -129,6 +122,5 @@ public class Room {
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
-
 
 }

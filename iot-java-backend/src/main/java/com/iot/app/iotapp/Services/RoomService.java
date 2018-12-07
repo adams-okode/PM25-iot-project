@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.iot.app.iotapp.DataLayer.Room;
+import com.iot.app.iotapp.Helpers.NextSequenceHelper;
 import com.iot.app.iotapp.Repositories.RoomRepository;
 import com.iot.app.iotapp.Requests.RoomRequest;
 
@@ -18,7 +19,11 @@ import org.springframework.stereotype.Service;
 public class RoomService {
 
     @Autowired
-    RoomRepository roomRepository;
+	RoomRepository roomRepository;
+	
+	@Autowired
+	NextSequenceHelper nextSequenceHelper;
+    
 
     public List<Room> getAllRooms() {
 		List<Room> Rooms = new ArrayList<>();
@@ -32,6 +37,7 @@ public class RoomService {
     
 	public void addRoom(RoomRequest roomRequest) {
 		Room room=new Room();
+		room.setId(nextSequenceHelper.getNextSequence("rooms"));
 		room.setCreated_at(LocalDateTime.now());
 		room.setUpdated_at(LocalDateTime.now());
 		room.setName(roomRequest.getName());

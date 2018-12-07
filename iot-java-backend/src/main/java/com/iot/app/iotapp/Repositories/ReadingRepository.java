@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.iot.app.iotapp.DataLayer.Reading;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * ReadingRepository
  */
-public interface ReadingRepository extends CrudRepository<Reading, Long>{
+public interface ReadingRepository extends MongoRepository<Reading, Long>{
 
     List<Reading> findBySensorId(Long id);
 }

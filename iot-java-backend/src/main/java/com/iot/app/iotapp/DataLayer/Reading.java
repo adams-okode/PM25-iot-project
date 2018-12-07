@@ -1,35 +1,31 @@
 package com.iot.app.iotapp.DataLayer;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Reading
  */
-@Entity
-@Table(name = "readings")
+@Document( collection ="readings")
 public class Reading {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   
     private Long id;
 
-    @ManyToOne
+    @DBRef
     @JsonBackReference
     private PM25 sensor;
 
     private Integer x;
     private Integer y;
 
-    
     private Float value;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
@@ -60,8 +56,6 @@ public class Reading {
     public void setId(Long id) {
         this.id = id;
     }
-
-    
 
     /**
      * @return Float return the value
@@ -105,7 +99,6 @@ public class Reading {
         this.updated_at = updated_at;
     }
 
-
     /**
      * @return PM25 return the sensor
      */
@@ -119,7 +112,6 @@ public class Reading {
     public void setSensor(PM25 sensor) {
         this.sensor = sensor;
     }
-
 
     /**
      * @return Integer return the x

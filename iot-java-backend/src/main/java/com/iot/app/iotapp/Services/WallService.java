@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.iot.app.iotapp.DataLayer.Room;
 import com.iot.app.iotapp.DataLayer.Wall;
+import com.iot.app.iotapp.Helpers.NextSequenceHelper;
 import com.iot.app.iotapp.Repositories.WallRepository;
 import com.iot.app.iotapp.Requests.WallRequest;
 
@@ -23,6 +24,9 @@ public class WallService {
     @Autowired
     RoomService roomService;
 
+    @Autowired
+    NextSequenceHelper nextSequenceHelper;
+
     public List<Wall> getAllWalls() {
         List<Wall> Walls = new ArrayList<>();
         wallRepository.findAll().forEach(Walls::add);
@@ -37,6 +41,7 @@ public class WallService {
         Wall wall = new Wall();
         Room room = roomService.getRoom(wallRequest.getRoom_id());
         wall.setroom(room);
+        wall.setId(nextSequenceHelper.getNextSequence("walls"));
         wall.setX1(wallRequest.getX1());
         wall.setX2(wallRequest.getX2());
         wall.setY1(wallRequest.getY1());

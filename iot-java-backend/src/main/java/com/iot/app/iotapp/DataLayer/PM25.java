@@ -1,34 +1,25 @@
 package com.iot.app.iotapp.DataLayer;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-@Table(name = "sensors")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection ="sensors")
 public class PM25 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @DBRef
     private Room room;
 
     private String tag;
     private Integer x2;
     private Integer y2;
 
-    @OneToMany
+    @DBRef
     @JsonManagedReference
     private List<Reading> reading;
     public PM25() {

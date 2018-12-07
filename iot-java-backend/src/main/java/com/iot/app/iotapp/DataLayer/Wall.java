@@ -1,30 +1,25 @@
 package com.iot.app.iotapp.DataLayer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Wall
  */
-@Entity
-@Table(name = "walls")
+@Document(collection = "walls")
 public class Wall {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @DBRef
     private Room room;
 
     private Integer x1;
     private Integer y1;
     private Integer x2;
     private Integer y2;
-
 
     public Wall() {
 

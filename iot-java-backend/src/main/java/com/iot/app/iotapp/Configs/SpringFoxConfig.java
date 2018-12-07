@@ -33,7 +33,6 @@ public class SpringFoxConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SPRING_WEB).select()
-
                 .apis(RequestHandlerSelectors.basePackage("com.iot.app.iotapp.Controllers")).paths(PathSelectors.any())
                 .build().apiInfo(apiInfo())
                 .pathMapping("/");
